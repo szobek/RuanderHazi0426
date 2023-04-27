@@ -12,6 +12,7 @@ static HashMap<Zoldseg, Integer> zoldseges = new HashMap<Zoldseg,Integer>();
 		zoldseges.put(new Zoldseg("Gomba", 890), 22);
 		zoldseges.put(new Zoldseg("Cukkini", 750), 17);
 		zoldseges.put(new Zoldseg("Kivi", 850), 20);
+		new Menu().show(zoldseges);
 		/*
 		zoldseges.put("Eper", 2900);
 		zoldseges.put("Alma", 590);

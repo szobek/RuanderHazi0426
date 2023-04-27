@@ -9,4 +9,18 @@ public final class Zoldseg {
 		this.ar = ar;
 	}
 
+	public int getAr() {
+		return ar;
+	}
+
+	public void setAr(int ar) {
+		this.ar = ar;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	
+
 }
