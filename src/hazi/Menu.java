@@ -27,4 +27,24 @@ public class Menu {
 		} while (menupont.equals("6"));
 		
 	}
+	private Object vasarlas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private Object lista() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private Object termekTorles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private Object arModositasa() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private Object ujTermek() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
