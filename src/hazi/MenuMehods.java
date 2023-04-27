@@ -11,7 +11,7 @@ public abstract class MenuMehods {
 		switch (menupont) {
 		case "1" -> ujTermek(zoldseges,br);
 		case "2" -> termekTorles();
-		case "3" -> arModositasa();
+		case "3" -> arModositasa(zoldseges,br);
 		case "4" -> lista(zoldseges);
 		case "5" -> vasarlas();
 		}
@@ -31,14 +31,41 @@ public abstract class MenuMehods {
 		System.out.println();
 	}
 
-	private static Object termekTorles() {
-		// TODO Auto-generated method stub
-		return null;
+	private static void termekTorles() {
+		
 	}
 
-	private static Object arModositasa() {
-		// TODO Auto-generated method stub
-		return null;
+	private static void arModositasa(HashMap<Zoldseg, Integer> zoldseges,BufferedReader br) {
+		String name="";
+		int ar = 0;
+		boolean talalat = false;
+		System.out.println("Melyik termék ára módosul?");
+		try {
+			name=br.readLine();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		for (Map.Entry<Zoldseg, Integer> elem : zoldseges.entrySet()) {
+			if(name.equals(elem.getKey().getName())) {
+				do {
+					System.out.println("Adja meg az új árát ("+elem.getKey().getName()+")");
+					try {
+						ar=Integer.parseInt(br.readLine());
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					
+				} while (ar<1);
+				talalat=true;
+				elem.getKey().setAr(ar);
+			}
+
+		}
+		if(!talalat) {
+			System.out.println("Nincs ilyen termék");	
+		}
+		
 	}
 
 	private static void ujTermek(HashMap<Zoldseg, Integer> zoldseges, BufferedReader br) {
