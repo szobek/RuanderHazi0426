@@ -26,7 +26,7 @@ public class Menu {
 				e.printStackTrace();
 			}
 			
-		MenuMehods.methodChange(menupont,zoldseges);	
+		MenuMehods.methodChange(menupont,zoldseges,br);	
 		} while (!menupont.equals("6"));
 		
 	}
