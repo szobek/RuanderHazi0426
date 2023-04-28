@@ -3,24 +3,42 @@ package hazi;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public abstract class MenuMehods {
 
 	public static void methodChange(String menupont,HashMap<Zoldseg, Integer> zoldseges,BufferedReader br) {
 		switch (menupont) {
 		case "1" -> ujTermek(zoldseges,br);
-		case "2" -> termekTorles();
+		case "2" -> termekTorles(zoldseges,br);
 		case "3" -> arModositasa(zoldseges,br);
 		case "4" -> lista(zoldseges);
-		case "5" -> vasarlas();
+		case "5" -> vasarlas(zoldseges,br);
 		}
 
 	}
 
-	private static Object vasarlas() {
-		// TODO Auto-generated method stub
-		return null;
+	private static void vasarlas(HashMap<Zoldseg, Integer> zoldseges,BufferedReader br) {
+		String name="";
+		boolean talalat = false;
+		System.out.println("Melyik terméket venné meg?");
+		try {
+			name=br.readLine();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		Iterator it = zoldseges.entrySet().iterator();
+		while(it.hasNext()) {
+			Entry item = (Map.Entry)it.next();
+			if(name.equals(((Zoldseg) item.getKey()).getName())) {
+				System.out.println("A termék: "+((Zoldseg) item.getKey()).getName()+ " darabszám: "+item.getValue());
+				
+			}
+		}
+		System.out.println();
 	}
 
 	private static void lista(HashMap<Zoldseg, Integer> zoldseges) {
@@ -31,7 +49,44 @@ public abstract class MenuMehods {
 		System.out.println();
 	}
 
-	private static void termekTorles() {
+	private static void termekTorles(HashMap<Zoldseg, Integer> zoldseges,BufferedReader br) {
+		String name="";
+		boolean talalat = false;
+		System.out.println("Melyik terméket törölné?");
+		try {
+			name=br.readLine();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		Iterator it = zoldseges.entrySet().iterator();
+		while(it.hasNext()) {
+			Entry item = (Map.Entry)it.next();
+			if(name.equals(((Zoldseg) item.getKey()).getName())) {
+				talalat=true;
+				try {
+					it.remove();	
+				} catch (Exception e) {
+					System.out.println("Rendszerhiba!");
+				}
+				
+			}
+		}
+		/*
+		for (Map.Entry<Zoldseg, Integer> elem : zoldseges.entrySet()) {
+			if(name.equals(elem.getKey().getName())) {
+				talalat=true;
+				zoldseges.remove(elem.getKey());
+			}
+		}
+		
+		*/
+		
+		if(!talalat) {
+			System.out.println("Nincs ilyen termék");	
+		}
+
 		
 	}
 
