@@ -22,7 +22,8 @@ public abstract class MenuMehods {
 
 	private static void vasarlas(HashMap<Zoldseg, Integer> zoldseges,BufferedReader br) {
 		String name="";
-		boolean talalat = false;
+		int darabSzam = 0;
+		
 		System.out.println("Melyik terméket venné meg?");
 		try {
 			name=br.readLine();
@@ -34,10 +35,25 @@ public abstract class MenuMehods {
 		while(it.hasNext()) {
 			Entry item = (Map.Entry)it.next();
 			if(name.equals(((Zoldseg) item.getKey()).getName())) {
-				System.out.println("A termék: "+((Zoldseg) item.getKey()).getName()+ " darabszám: "+item.getValue());
+				System.out.println("A termék: "+((Zoldseg) item.getKey()).getName()+ ". Mennyit venne?");
+				
+				try {
+					darabSzam=Integer.parseInt(br.readLine());
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("Hibás mennyiség!");
+					
+				}
+				if(darabSzam>Integer.parseInt(item.getValue().toString())) {
+					System.out.println("Nincs ennyi!");
+				} else {// lehetne egy sor de így átláthatóbb
+					int ossz = ((Zoldseg) item.getKey()).getAr() * darabSzam;
+					System.out.println("Összesen: "+ossz+"Ft ");	
+				}
 				
 			}
 		}
+		
 		System.out.println();
 	}
 
@@ -73,15 +89,6 @@ public abstract class MenuMehods {
 				
 			}
 		}
-		/*
-		for (Map.Entry<Zoldseg, Integer> elem : zoldseges.entrySet()) {
-			if(name.equals(elem.getKey().getName())) {
-				talalat=true;
-				zoldseges.remove(elem.getKey());
-			}
-		}
-		
-		*/
 		
 		if(!talalat) {
 			System.out.println("Nincs ilyen termék");	
@@ -125,7 +132,7 @@ public abstract class MenuMehods {
 
 	private static void ujTermek(HashMap<Zoldseg, Integer> zoldseges, BufferedReader br) {
 		String name="";
-		int ar=0;
+		int ar=0,darabSzam=0;
 		do {
 			System.out.print("Adja meg az új termék nevét: ");
 			try {
@@ -145,8 +152,16 @@ public abstract class MenuMehods {
 				// TODO: handle exception
 			}
 		} while (ar<10);
-		
-		zoldseges.put(new Zoldseg(name, ar), 1);
+
+		do {
+			System.out.print("Adja meg az új termék darabszámát: ");
+			try {
+				darabSzam=Integer.parseInt(br.readLine());
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		} while (darabSzam<1);
+		zoldseges.put(new Zoldseg(name, ar), darabSzam);
 		System.out.println("Az új termék mentve");
 		System.out.println();
 	}
