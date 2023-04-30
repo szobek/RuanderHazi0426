@@ -16,12 +16,8 @@ public class Main {
 
 	private void run() {
 		listUploadWithRandomNums();
-		listThreeLines();
-		allEvenNumQuantity();
-		hasNumEqualListLength();
-		centerOfList();
-		deleteAllUnderTwenty();
-		allEvenNumQuantity();
+		
+		listAllOddNumbers();
 
 	}
 	
@@ -88,6 +84,28 @@ public class Main {
 		System.out.println();
 		simpleList();
 
+	}
+	
+	private void listAllOddNumbers() {
+		StringBuilder write =  new StringBuilder("");
+		
+		System.out.println("Páratlan számok:");
+		for (int i = 0; i < this.nums.size(); i++) {
+			if(this.nums.get(i)%2>0) {
+				write.append(this.nums.get(i) );
+				if(i<this.nums.size()-1) {
+					write.append("-");
+				}else {
+					write.append("");
+				}
+			}
+			
+		}
+		
+		
+
+		System.out.println(write.substring(0, this.nums.size()-1));
+		System.out.println();
 	}
 
 }
